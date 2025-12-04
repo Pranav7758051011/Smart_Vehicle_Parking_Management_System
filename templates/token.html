@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% block title %}Token Generated{% endblock %}
+{% block content %}
+
+<style>
+    .token-card {
+        background: rgba(255,255,255,0.12);
+        padding: 32px;
+        border-radius: 20px;
+        color: white;
+        max-width: 550px;
+        margin: 40px auto;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 12px 40px rgba(0,0,0,0.45);
+        animation: fadeIn 0.5s ease-in-out;
+        text-align: center;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .token-title {
+        font-size: 2rem;
+        color: #38bdf8;
+        margin-bottom: 10px;
+        text-shadow: 0 0 12px rgba(56,189,248,0.5);
+    }
+
+    .token-number {
+        font-size: 3.5rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        color: #22c55e;
+        margin-top: 18px;
+        text-shadow: 0 0 18px rgba(34,197,94,0.5);
+    }
+
+    .btn-back {
+        margin-top: 30px;
+        display: inline-block;
+        background: #3b82f6;
+        padding: 12px 20px;
+        border-radius: 12px;
+        color: white;
+        font-weight: 700;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .btn-back:hover {
+        background: #2563eb;
+        transform: translateY(-3px);
+    }
+</style>
+
+
+<div class="token-card">
+
+    <div class="token-title">Vehicle Entry Successful!</div>
+
+    <p>Your unique parking token number is:</p>
+
+    <div class="token-number">
+        {{ token }}
+    </div>
+
+    <p style="margin-top:15px; opacity:0.85;">
+        Please keep this token safe.  
+        You will need it at the time of exit.
+    </p>
+
+    <a href="/" class="btn-back">Back to Dashboard</a>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% block title %}Check Token{% endblock %}
+{% block content %}
+
+<h2>Check My Token</h2>
+
+<div class="card">
+  <form method="post">
+    <label>Enter Token Number</label>
+    <input name="token" required>
+    <button class="btn" type="submit">Search</button>
+  </form>
+</div>
+
+{% if data %}
+<div class="card">
+  <h3>Vehicle Details</h3>
+  <p><b>Token:</b> {{ data[0] }}</p>
+  <p><b>Name:</b> {{ data[1] }}</p>
+  <p><b>Mobile:</b> {{ data[2] }}</p>
+  <p><b>Vehicle Type:</b> {{ data[3] }}</p>
+  <p><b>Vehicle Number:</b> {{ data[4] }}</p>
+  <p><b>Place ID:</b> {{ data[5] }}</p>
+  <p><b>Slot ID:</b> {{ data[6] }}</p>
+  <p><b>Entry Time:</b> {{ data[7] }}</p>
+</div>
+{% endif %}
+
+{% endblock %}

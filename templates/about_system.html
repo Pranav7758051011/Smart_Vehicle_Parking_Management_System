@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% block title %}About System{% endblock %}
+
+{% block content %}
+
+<style>
+    .info-card {
+        background: rgba(255,255,255,0.12);
+        padding: 25px;
+        border-radius: 20px;
+        color: white;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+        backdrop-filter: blur(10px);
+        max-width: 700px;
+        margin: auto;
+        margin-top: 30px;
+        line-height: 1.7rem;
+    }
+
+    .info-card ul {
+        margin-left: 20px;
+    }
+
+    .info-card li {
+        margin-bottom: 8px;
+    }
+
+    h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: #38bdf8;
+        margin-top: 10px;
+        text-shadow: 0 0 10px rgba(56,189,248,0.5);
+    }
+</style>
+
+<h2>About Smart Parking System</h2>
+
+<div class="info-card">
+    <p>
+        The Smart Parking System is designed to simplify and automate the entire parking
+        experience for malls, supermarkets, and commercial complexes. It handles everything 
+        from vehicle entry to exit using a secure token-based system.
+    </p>
+
+    <p><strong>Main Features:</strong></p>
+
+    <ul>
+        <li>🚗 Automatic slot allocation based on vehicle type</li>
+        <li>🔢 3-digit random token generation for security</li>
+        <li>🗺️ Visual parking slot map for better navigation</li>
+        <li>💰 Real-time billing based on parking duration</li>
+        <li>📊 Dashboard with analytics & service tools</li>
+        <li>⚙️ MySQL backend with Flask-based frontend</li>
+        <li>🔥 Modern responsive UI for a smooth user experience</li>
+    </ul>
+
+    <p>
+        This system helps reduce human errors, manages parking efficiently,
+        and provides real-time insights for both users and administrators.
+    </p>
+</div>
+
+{% endblock %}

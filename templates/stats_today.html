@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}Today's Stats{% endblock %}
+{% block content %}
+
+<style>
+    .today-card {
+        background: rgba(255,255,255,0.10);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 12px 45px rgba(0,0,0,0.35);
+        max-width: 700px;
+        margin: 30px auto;
+        animation: fadeIn 0.5s ease-in-out;
+        color: white;
+        text-align: center;
+    }
+
+    .token-list {
+        margin-top: 25px;
+        text-align: left;
+        background: rgba(255,255,255,0.08);
+        padding: 15px;
+        border-radius: 12px;
+        font-size: 1rem;
+    }
+
+    .token-item {
+        padding: 6px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+</style>
+
+<div class="today-card">
+
+    <h2>📅 Vehicles Parked Today</h2>
+
+    <div class="stat-box">
+        <h3>Total Vehicles: {{ total_today }}</h3>
+    </div>
+
+    <div class="grid">
+        <div class="small-card">
+            <h3>🚗 Cars</h3>
+            <div class="count">{{ cars_today }}</div>
+        </div>
+
+        <div class="small-card">
+            <h3>🏍 Bikes</h3>
+            <div class="count">{{ bikes_today }}</div>
+        </div>
+    </div>
+
+    <h3 style="margin-top:20px;">Today’s Tokens (No Personal Details)</h3>
+
+    <div class="token-list">
+        {% if tokens_today %}
+           <h3 style="margin-top:30px;">Recent Vehicle Entries (Today)</h3>
+
+<div class="token-list">
+    {% if recent_list %}
+        {% for r in recent_list %}
+            <div class="token-item">
+                <strong>Vehicle:</strong> {{ r[1] }}  
+                | <strong>Type:</strong> {{ r[0] }}  
+                | <strong>Time:</strong> {{ r[2] }}
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>No entries today.</p>
+    {% endif %}
+</div>
+
+        {% else %}
+            <p>No entries today.</p>
+        {% endif %}
+    </div>
+
+</div>
+
+{% endblock %}

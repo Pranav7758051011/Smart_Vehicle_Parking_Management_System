@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Lost Token Help{% endblock %}
+{% block content %}
+
+<style>
+    .lost-card {
+        background: rgba(255,255,255,0.10);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        max-width: 600px;
+        margin: 30px auto;
+        color: white;
+        animation: fadeIn 0.5s ease-in-out;
+        line-height: 1.7rem;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .lost-icon {
+        font-size: 3rem;
+        text-align: center;
+        margin-bottom: 16px;
+        color: #38bdf8;
+        text-shadow: 0 0 10px rgba(56,189,248,0.6);
+    }
+
+    .lost-card h2 {
+        text-align: center;
+        font-size: 2rem;
+        color: #38bdf8;
+        margin-bottom: 12px;
+        text-shadow: 0 0 15px rgba(56,189,248,0.5);
+    }
+
+    ul {
+        margin-left: 20px;
+        font-size: 1.05rem;
+    }
+
+    .penalty-box {
+        background: rgba(239, 68, 68, 0.15);
+        padding: 12px;
+        border-radius: 12px;
+        border-left: 6px solid #ef4444;
+        color: #fecaca;
+        margin-top: 20px;
+        font-weight: 600;
+        text-align: center;
+    }
+</style>
+
+
+<div class="lost-card">
+
+    <div class="lost-icon">❗</div>
+
+    <h2>Lost Token Assistance</h2>
+
+    <p style="font-size:1.1rem; opacity:0.9;">
+        If you have lost your parking token, please visit the 
+        <strong>Parking Help Desk</strong> immediately.  
+    </p>
+
+    <p>You will be required to provide the following details:</p>
+
+    <ul>
+        <li>Your Name</li>
+        <li>Vehicle Number</li>
+        <li>Mobile Number</li>
+    </ul>
+
+    <div class="penalty-box">
+        ⚠️ A penalty of <strong>₹100</strong> may apply for lost tokens.
+    </div>
+
+</div>
+
+{% endblock %}

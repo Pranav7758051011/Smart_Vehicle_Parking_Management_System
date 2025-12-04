@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+{% block title %}Add Parking Spots{% endblock %}
+
+{% block content %}
+
+<style>
+    .form-card {
+        background: rgba(255,255,255,0.10);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+        width: 500px;
+        margin: 30px auto;
+        color: white;
+    }
+
+    .form-card h2 {
+        text-align: center;
+        color: #38bdf8;
+        margin-bottom: 20px;
+        font-size: 2rem;
+        text-shadow: 0 0 10px rgba(56,189,248,0.5);
+    }
+
+    .form-card label {
+        display: block;
+        margin-top: 15px;
+        font-size: 1.1rem;
+    }
+
+    .form-card select,
+    .form-card input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 6px;
+    }
+
+    .save-btn {
+        margin-top: 25px;
+        width: 100%;
+        background: #38bdf8;
+        padding: 12px;
+        border-radius: 12px;
+        color: black;
+        font-weight: 700;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .save-btn:hover {
+        background: #0ea5e9;
+        transform: translateY(-3px);
+    }
+</style>
+
+<div class="form-card">
+    <h2>🅿️ Add Parking Spots</h2>
+
+    <form method="post">
+
+        <label>Select Place</label>
+        <select name="place_id" required>   <!-- FIXED name="place_id" -->
+            {% for p in places %}
+                <option value="{{ p[0] }}">{{ p[1] }}</option>
+            {% endfor %}
+        </select>
+
+        <label>Number of Car Slots</label>
+        <input type="number" name="car_spots" min="0" placeholder="Enter number of car slots" required>
+
+        <label>Number of Bike Slots</label>
+        <input type="number" name="bike_spots" min="0" placeholder="Enter number of bike slots" required>
+
+        <button class="save-btn" type="submit">Add Slots</button>
+    </form>
+</div>
+
+{% endblock %}

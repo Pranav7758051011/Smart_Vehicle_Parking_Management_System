@@ -1,0 +1,108 @@
+{% extends "base.html" %}
+{% block title %}Occupancy Status{% endblock %}
+{% block content %}
+
+<style>
+.place-card {
+    background: rgba(255,255,255,0.12);
+    padding: 22px;
+    border-radius: 18px;
+    margin-bottom: 18px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    backdrop-filter: blur(10px);
+}
+
+.place-title {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: #38bdf8;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+    margin-top: 12px;
+}
+
+.stat-box {
+    background: rgba(255,255,255,0.08);
+    padding: 14px;
+    border-radius: 14px;
+    text-align: center;
+}
+
+.big {
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #22d3ee;
+}
+
+.small {
+    opacity: 0.85;
+    font-size: 0.9rem;
+}
+
+</style>
+
+<h2 style="text-align:center;">📍 Parking Occupancy — Place-wise</h2>
+<p style="text-align:center;opacity:0.7;">
+    Live occupancy data for each parking place
+</p>
+
+{% for p in place_data %}
+<div class="place-card">
+
+    <div class="place-title">{{ p.place_name }}</div>
+
+    <div class="grid-3">
+
+        <div class="stat-box">
+            <div class="big">{{ p.total }}</div>
+            <div class="small">Total Slots</div>
+        </div>
+
+        <div class="stat-box">
+            <div class="big">{{ p.occupied }}</div>
+            <div class="small">Occupied</div>
+        </div>
+
+        <div class="stat-box">
+            <div class="big">{{ p.free }}</div>
+            <div class="small">Available</div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="grid-3">
+
+        <div class="stat-box">
+            <div class="big">{{ p.vehicles }}</div>
+            <div class="small">Vehicles Inside</div>
+        </div>
+
+        <div class="stat-box">
+            <div class="big">{{ p.cars }}</div>
+            <div class="small">Cars</div>
+        </div>
+
+        <div class="stat-box">
+            <div class="big">{{ p.bikes }}</div>
+            <div class="small">Bikes</div>
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="stat-box" style="max-width: 250px; margin:auto;">
+        <div class="big">{{ p.percent }}%</div>
+        <div class="small">Occupancy</div>
+    </div>
+
+</div>
+{% endfor %}
+
+{% endblock %}

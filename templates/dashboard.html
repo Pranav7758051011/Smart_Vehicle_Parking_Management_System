@@ -1,0 +1,205 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+
+<style>
+/* Hero Section */
+.hero {
+    text-align: center;
+    padding: 40px 20px;
+    margin-bottom: 30px;
+    background: linear-gradient(135deg, rgba(56,189,248,0.15), rgba(15,23,42,0.3));
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+    animation: fadeIn 1s ease-in-out;
+}
+.hero h1 {
+    font-size: 2.5rem;
+    color: #38bdf8;
+    text-shadow: 0 0 15px rgba(56,189,248,0.5);
+}
+.hero p {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+/* Card Design */
+.card {
+    background: rgba(255,255,255,0.08);
+    padding: 25px;
+    border-radius: 18px;
+    text-align: center;
+    color: white;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.35);
+    transition: 0.3s ease;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.card:hover {
+    transform: translateY(-6px);
+    background: rgba(255,255,255,0.14);
+    box-shadow: 0 12px 25px rgba(0,0,0,0.5);
+}
+.card h3 {
+    margin-bottom: 12px;
+    font-size: 1.3rem;
+    color: #93c5fd;
+}
+.card a {
+    display: block;
+    color: #38bdf8;
+    font-weight: 600;
+    font-size: 1.05rem;
+    margin-top: 6px;
+}
+
+/* Footer Section */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+.footer a {
+    margin: 0 10px;
+    color: #38bdf8;
+    text-decoration: none;
+}
+.footer a:hover {
+    text-decoration: underline;
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+</style>
+
+
+<!-- HERO SECTION -->
+<div class="hero">
+    <h1>Welcome to Smart Parking System</h1>
+    <p>Manage vehicles, monitor status, analyze data — all in one place.</p>
+</div>
+
+
+<!-- DASHBOARD GRID -->
+<div class="dashboard-grid">
+
+    <div class="card">
+        <h3>Parking Rates</h3>
+        <a href="{{ url_for('parking_rates') }}">View Rates →</a>
+    </div>
+
+    <div class="card">
+        <h3>Opening Hours</h3>
+        <a href="{{ url_for('opening_hours') }}">Check Hours →</a>
+    </div>
+
+    <div class="card">
+        <h3>Rules</h3>
+        <a href="{{ url_for('rules') }}">View Rules →</a>
+    </div>
+
+    <div class="card">
+        <h3>Emergency Contact</h3>
+        <a href="{{ url_for('contact') }}">Contact Info →</a>
+    </div>
+
+    <div class="card">
+        <h3>Parking Places</h3>
+        <a href="{{ url_for('places_info') }}">View Places →</a>
+    </div>
+
+    <div class="card">
+        <h3>Check Token</h3>
+        <a href="{{ url_for('check_token') }}">Search Token →</a>
+    </div>
+
+    <div class="card">
+        <h3>Lost Token</h3>
+        <a href="{{ url_for('lost_token') }}">Recover Token →</a>
+    </div>
+
+    <div class="card">
+        <h3>Help Desk</h3>
+        <a href="{{ url_for('help_page') }}">Get Help →</a>
+    </div>
+
+    <div class="card">
+        <h3>Today's Stats</h3>
+        <a href="{{ url_for('stats_today') }}">View Data →</a>
+    </div>
+
+    <div class="card">
+        <h3>Earnings</h3>
+        <a href="{{ url_for('stats_earnings') }}">View Chart →</a>
+    </div>
+
+    <div class="card">
+        <h3>Occupancy</h3>
+        <a href="{{ url_for('stats_occupancy') }}">Check Slots →</a>
+    </div>
+
+    <div class="card">
+        <h3>Recent Entries</h3>
+        <a href="{{ url_for('stats_recent') }}">View Logs →</a>
+    </div>
+
+    <div class="card">
+        <h3>About System</h3>
+        <a href="{{ url_for('about_system') }}">Learn More →</a>
+    </div>
+
+<!-- FOOTER SECTION -->
+<div class="footer">
+    <p>Smart Parking System © 2025</p>
+    <p>
+        <a href="{{ url_for('about_system') }}">About</a> •
+        <a href="{{ url_for('contact') }}">Contact</a> •
+        <a href="{{ url_for('rules') }}">Rules</a>
+    </p>
+</div>
+{% endblock %}
+<!-- Vehicle Actions Section -->
+<h2 class="section-title">🚘 Vehicle Operations</h2>
+
+<div class="card-grid">
+
+    <a href="{{ url_for('vehicle_entry') }}" class="dash-card">
+        <div class="icon">🚗</div>
+        <div class="card-title">Vehicle Entry</div>
+        <div class="card-desc">Add a new vehicle to the parking</div>
+    </a>
+
+    <a href="{{ url_for('vehicle_exit') }}" class="dash-card">
+        <div class="icon">🚪</div>
+        <div class="card-title">Vehicle Exit</div>
+        <div class="card-desc">Exit vehicle & calculate bill</div>
+    </a>
+
+    <a href="{{ url_for('status') }}" class="dash-card">
+        <div class="icon">📊</div>
+        <div class="card-title">Parking Status</div>
+        <div class="card-desc">Check total vehicles & slots</div>
+    </a>
+    
+    <a href="{{ url_for('stats_earnings') }}" class="dash-card">
+        <div class="icon">💰</div>
+        <div class="card-title">Today's Earnings</div>
+        <div class="card-desc">Total money collected today</div>
+    </a>
+
+</div>

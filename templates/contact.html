@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Emergency Contact{% endblock %}
+{% block content %}
+
+<style>
+    .contact-card {
+        background: rgba(255,255,255,0.10);
+        padding: 28px;
+        border-radius: 20px;
+        backdrop-filter: blur(10px);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+        max-width: 550px;
+        margin: 30px auto;
+        color: white;
+        line-height: 1.7rem;
+        text-align: center;
+    }
+
+    .contact-card h2 {
+        font-size: 2rem;
+        color: #38bdf8;
+        margin-bottom: 15px;
+        text-shadow: 0 0 10px rgba(56,189,248,0.5);
+    }
+
+    .contact-card p {
+        font-size: 1.15rem;
+        margin: 10px 0;
+    }
+
+    .contact-icon {
+        font-size: 2.2rem;
+        margin-bottom: 10px;
+        color: #38bdf8;
+        text-shadow: 0 0 10px rgba(56,189,248,0.6);
+    }
+</style>
+
+
+<div class="contact-card">
+
+    <div class="contact-icon">📞</div>
+
+    <h2>Emergency Contact</h2>
+
+    <p>
+        🚨 <strong>Emergency Helpline:</strong><br>
+        <span style="color:#93c5fd; font-size:1.3rem;">100</span>
+    </p>
+
+    <p>
+        ☎️ <strong>Parking Support:</strong><br>
+        <span style="color:#93c5fd;">+91 9876543210</span>
+    </p>
+
+    <p>
+        📍 <strong>Location:</strong><br>
+        Ground Floor, Main Parking Office
+    </p>
+
+</div>
+
+{% endblock %}

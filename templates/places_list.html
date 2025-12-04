@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block title %}Choose Parking Place{% endblock %}
+{% block content %}
+
+<style>
+    .places-box {
+        background: rgba(255,255,255,0.10);
+        padding: 28px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        max-width: 600px;
+        margin: 30px auto;
+        animation: fadeIn 0.5s ease-in-out;
+        color: white;
+        text-align: center;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(12px);}
+        to   {opacity: 1; transform: translateY(0);}
+    }
+
+    .places-header {
+        font-size: 2rem;
+        color: #38bdf8;
+        text-shadow: 0 0 12px rgba(56,189,248,0.5);
+        margin-bottom: 18px;
+    }
+
+    .place-btn {
+        display: block;
+        background: #38bdf8;
+        padding: 12px 20px;
+        border-radius: 12px;
+        margin: 12px auto;
+        width: 80%;
+        color: #0f172a;
+        font-weight: 700;
+        text-decoration: none;
+        transition: 0.3s;
+    }
+
+    .place-btn:hover {
+        background: #0ea5e9;
+        transform: translateY(-3px);
+    }
+</style>
+
+
+<div class="places-box">
+
+    <div class="places-header">📍 Choose Parking Place</div>
+
+    {% for p in places %}
+        <a href="/slot-map/{{ p[0] }}/0" class="place-btn">
+            {{ p[1] }}
+        </a>
+    {% endfor %}
+
+</div>
+
+{% endblock %}

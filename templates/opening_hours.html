@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block title %}Opening Hours{% endblock %}
+{% block content %}
+
+<style>
+    .hours-card {
+        background: rgba(255,255,255,0.10);
+        padding: 30px;
+        border-radius: 20px;
+        backdrop-filter: blur(12px);
+        box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+        max-width: 600px;
+        margin: 30px auto;
+        color: white;
+        animation: fadeIn 0.5s ease-in-out;
+        text-align: center;
+        line-height: 1.8rem;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(12px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    .hours-icon {
+        font-size: 3rem;
+        margin-bottom: 15px;
+        color: #38bdf8;
+        text-shadow: 0 0 12px rgba(56,189,248,0.6);
+    }
+
+    .hours-card h2 {
+        font-size: 2rem;
+        color: #38bdf8;
+        margin-bottom: 10px;
+        text-shadow: 0 0 15px rgba(56,189,248,0.5);
+    }
+
+    .staff-box {
+        background: rgba(56,189,248,0.15);
+        padding: 15px;
+        border-radius: 14px;
+        border-left: 6px solid #38bdf8;
+        margin-top: 20px;
+        color: #e0f2fe;
+        font-weight: 600;
+        text-align: left;
+    }
+</style>
+
+
+<div class="hours-card">
+
+    <div class="hours-icon">⏰</div>
+
+    <h2>Opening Hours</h2>
+
+    <p style="font-size:1.15rem; opacity:0.85;">
+        Our parking facilities operate <strong>24 hours a day</strong>, 
+        <strong>7 days a week</strong>.
+    </p>
+
+    <div class="staff-box">
+        <strong>Staffed Hours:</strong><br>
+        Monday – Sunday: <strong>8:00 AM to 10:00 PM</strong>
+    </div>
+
+</div>
+
+{% endblock %}

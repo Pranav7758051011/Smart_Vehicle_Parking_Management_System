@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block title %}Add Parking Place{% endblock %}
+
+{% block content %}
+
+<style>
+    .form-card {
+        background: rgba(255,255,255,0.10);
+        backdrop-filter: blur(10px);
+        padding: 30px;
+        border-radius: 20px;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.45);
+        width: 450px;
+        margin: 30px auto;
+        color: white;
+    }
+
+    .form-card h2 {
+        text-align: center;
+        color: #38bdf8;
+        margin-bottom: 15px;
+        font-size: 1.8rem;
+        text-shadow: 0 0 10px rgba(56,189,248,0.5);
+    }
+
+    .form-card label {
+        display: block;
+        margin-top: 12px;
+        font-size: 1.1rem;
+    }
+
+    .form-card input {
+        width: 100%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        margin-top: 5px;
+    }
+
+    .save-btn {
+        margin-top: 18px;
+        width: 100%;
+        background: #38bdf8;
+        padding: 12px;
+        border-radius: 12px;
+        color: black;
+        font-weight: 700;
+        font-size: 1rem;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .save-btn:hover {
+        background: #0ea5e9;
+        transform: translateY(-3px);
+    }
+</style>
+
+<div class="form-card">
+    <h2>➕ Add New Parking Place</h2>
+
+    <form method="post">
+        <label>Place Name</label>
+        <input name="place_name" placeholder="e.g. D-Mart, Phoenix Mall" required>
+
+        <button class="save-btn" type="submit">Save Place</button>
+    </form>
+</div>
+
+{% endblock %}

@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% block title %}Parking Bill{% endblock %}
+
+{% block content %}
+
+<style>
+    .receipt-card {
+        background: rgba(255, 255, 255, 0.12);
+        backdrop-filter: blur(12px);
+        border-radius: 18px;
+        padding: 28px;
+        max-width: 650px;
+        margin: auto;
+        color: #e2e8f0;
+        box-shadow: 0 10px 40px rgba(0,0,0,0.25);
+        border: 1px solid rgba(255,255,255,0.15);
+        animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+        from {opacity: 0; transform: translateY(12px);}
+        to {opacity: 1; transform: translateY(0);}
+    }
+
+    .bill-header {
+        text-align: center;
+        font-size: 2rem;
+        font-weight: 700;
+        color: #38bdf8;
+        margin-bottom: 18px;
+        text-shadow: 0 0 12px rgba(56,189,248,0.5);
+    }
+
+    .bill-item {
+        background: rgba(255,255,255,0.06);
+        padding: 12px 15px;
+        border-radius: 12px;
+        margin: 10px 0;
+        font-size: 1.1rem;
+        border-left: 5px solid rgba(56,189,248,0.4);
+    }
+
+    .bill-amount {
+        color: #4ade80;
+        font-size: 2.4rem;
+        font-weight: 800;
+        text-align: center;
+        margin-top: 20px;
+        text-shadow: 0 0 10px rgba(74,222,128,0.5);
+    }
+
+    .minute-box {
+        background: rgba(56, 189, 248, 0.15);
+        padding: 10px;
+        border-radius: 12px;
+        margin: 15px 0;
+        font-size: 1rem;
+        border-left: 6px solid #38bdf8;
+    }
+
+    .back-btn {
+        display: inline-block;
+        margin-top: 25px;
+        background: #0ea5e9;
+        color: white;
+        padding: 12px 25px;
+        font-weight: 700;
+        border-radius: 12px;
+        text-decoration: none;
+        transition: 0.3s ease;
+    }
+
+    .back-btn:hover {
+        background: #0369a1;
+        transform: translateY(-2px);
+    }
+</style>
+
+
+<div class="receipt-card">
+
+    <div class="bill-header">🧾 Parking Receipt</div>
+
+    {% if receipt %}
+
+        <div class="bill-item">
+            <strong>Token:</strong> {{ receipt.token }}
+        </div>
+
+        <div class="bill-item">
+            <strong>Name:</strong> {{ receipt.name }}
+        </div>
+
+        <div class="bill-item">
+            <strong>Vehicle:</strong> {{ receipt.vehicle_type|title }}
+        </div>
+
+        <div class="bill-item">
+            <strong>Parking Slot:</strong> {{ receipt.slot_id }}
+        </div>
+
+        <div class="bill-item">
+            <strong>Entry Time:</strong> {{ receipt.entry_time }}
+        </div>
+
+        <div class="bill-item">
+            <strong>Exit Time:</strong> {{ receipt.exit_time }}
+        </div>
+
+        <div class="minute-box">
+            <strong>Duration:</strong> {{ receipt.minutes }} minutes <br>
+            <strong>Rate:</strong> ₹{{ receipt.rate }}/minute
+        </div>
+
+        <div class="bill-amount">₹{{ receipt.charge }}</div>
+        <p style="text-align:center; opacity:0.8;">Total Amount</p>
+
+    {% else %}
+        <p style="text-align:center;">No receipt data available.</p>
+    {% endif %}
+
+    <div style="text-align:center;">
+        <a href="{{ url_for('dashboard') }}" class="back-btn">Back to Dashboard</a>
+    </div>
+
+</div>
+
+{% endblock %}
