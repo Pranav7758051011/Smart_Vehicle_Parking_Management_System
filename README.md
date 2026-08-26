@@ -1,84 +1,134 @@
-# Smart_Vehicle_Parking_Management_System
-A modern, fully digital parking solution built using Python (Flask), MySQL, HTML, CSS, and a clean UI. This project automates the entire workflow of parking operations from vehicle entry to billing making the process fast, secure, and error-free.
-Smart Parking System
+<div align="center">
 
-A web-based automated vehicle parking management system built using Flask (Python), MySQL, HTML/CSS, designed to streamline parking operations, reduce manual work, and provide real-time monitoring of entries, exits, billing, and occupancy.
+  <h1>🚗 Smart Vehicle Parking Management System</h1>
+  <p><strong>An automated, web-based digital parking infrastructure for smart urban cities</strong></p>
 
-**Overview**
+  <p>
+    <img src="https://img.shields.io/badge/Python-3.10+-3776AB?style=for-the-badge&logo=python&logoColor=white" />
+    <img src="https://img.shields.io/badge/Flask-Web_Framework-000000?style=for-the-badge&logo=flask&logoColor=white" />
+    <img src="https://img.shields.io/badge/MySQL-Relational_DB-4479A1?style=for-the-badge&logo=mysql&logoColor=white" />
+    <img src="https://img.shields.io/badge/Architecture-MVC-green?style=for-the-badge" />
+    <img src="https://img.shields.io/badge/License-MIT-blue?style=for-the-badge" />
+  </p>
 
-The Smart Parking System digitizes the complete parking workflow from vehicle entry to final billing. It automatically assigns slots, generates unique tokens, calculates charges using timestamps, and updates occupancy across multiple locations. A modern dashboard provides administrators real-time insights including today’s stats, earnings, recent entries, and place-wise occupancy.
+</div>
 
-Features
-Vehicle Entry
+---
 
-Enter user details, vehicle type, number, and place
+## 📌 Overview
 
-Automatic slot allocation based on availability
+The **Smart Vehicle Parking Management System** digitizes and automates the complete parking lifecycle—from real-time entry and dynamic slot assignment to precision timestamp billing and slot deallocation.
 
-Instant 3-digit unique token generation
+Designed to eliminate manual ticketing errors and congestion, this platform offers a streamlined interface for attendants and a centralized analytics dashboard for administrators to monitor real-time occupancy, vehicle categories, and revenue streams across multiple locations.
 
-Stores all data securely in MySQL
+---
 
-Vehicle Exit & Billing
+## ✨ Key Features
 
-Token-based record retrieval
+* 🎟️ **Instant Dynamic Slot Allocation:** Automatically searches and allocates available spots based on location and vehicle type (2-Wheeler / 4-Wheeler).
+* 🔢 **Cryptographic 3-Digit Token Generation:** Generates unique, tamper-proof session tokens for frictionless entry and exit lookup.
+* ⏱️ **Timestamp-Accurate Tariff Engine:** Calculates exact billing durations with variable rate tiers:
+  * 🏍️ **Two-Wheelers:** ₹1 / min
+  * 🚗 **Four-Wheelers:** ₹3 / min
+* 📊 **Executive Real-Time Dashboard:**
+  * Daily metrics (total vehicle throughput, car/bike breakdown, cumulative earnings).
+  * Place-wise live occupancy monitors with percentage fill gauges.
+  * Recent entry audit logs with sensitive detail masking.
+* 🧾 **Automated Digital Receipts:** Generates timestamped, structured receipts upon payment and exit.
+* 🛠️ **Administrative Utility Suite:** Lost token recovery workflows, dynamic rate management, and token status verification.
 
-Calculates duration and charges (Bike: ₹1/min, Car: ₹3/min)
+---
 
-Frees slot and updates occupancy
+## 🏗️ System Architecture & Workflow
 
-Generates a digital parking receipt
+```mermaid
+sequenceDiagram
+    autonumber
+    actor Driver as 🚘 Driver / Vehicle
+    actor Attendant as 👨‍💼 Gate Attendant
+    participant System as ⚙️ Flask Application
+    participant DB as 🗄️ MySQL Database
+    participant Admin as 📊 Admin Dashboard
 
-**Dashboard**
+    %% Entry Flow
+    Note over Driver,DB: Entry Phase
+    Driver->>Attendant: Arrives at Parking Gate
+    Attendant->>System: Submit Vehicle & Location Details
+    System->>DB: Query Available Slots & Reserve
+    DB-->>System: Slot Confirmed
+    System->>DB: Insert Entry Record (Timestamp & Token)
+    System-->>Attendant: Issue 3-Digit Unique Parking Token
+    Attendant-->>Driver: Hand Over Entry Pass
 
-Today’s stats (cars, bikes, totals)
+    %% Exit Flow
+    Note over Driver,DB: Exit & Billing Phase
+    Driver->>Attendant: Arrives at Exit Gate & Presents Token
+    Attendant->>System: Input Token
+    System->>DB: Fetch Entry Timestamp & Vehicle Type
+    System->>System: Calculate Duration (Δt) & Total Fee (₹)
+    System-->>Attendant: Display Payable Bill
+    Attendant->>System: Confirm Payment & Clearance
+    System->>DB: Update Exit Record & Free Slot
+    System-->>Driver: Provide Digital Receipt
+    System->>Admin: Push Live Revenue & Occupancy Update
+```
 
-Daily earnings calculation
+---
 
-Recent vehicle entries (details masked)
+## 🗄️ Database Design
 
-Parking occupancy displayed place-wise
+The relational schema is optimized for ACID compliance and sub-millisecond query lookups:
 
-Additional Modules
+* **`places`**: Stores parking facility locations, total capacity, and active thresholds.
+* **`parking_slots`**: Relational mapping of slots, categorization, and occupancy flags (`AVAILABLE` / `OCCUPIED`).
+* **`vehicle_entry`**: Captures vehicle numbers, owner contact, assigned slot ID, entry timestamp, and unique active token.
+* **`vehicle_exit`**: Archives exit timestamps, total calculated minutes, fee paid, and transaction verification.
 
-Lost token assistance
+---
 
-Parking rates page
+## 🚀 Quickstart & Setup Guide
 
-Token check page
+### 1. Prerequisites
+* Python 3.9+
+* MySQL Server / XAMPP
 
-Help desk and support info
+### 2. Clone the Repository
+```bash
+git clone https://github.com/Pranav7758051011/Smart_Vehicle_Parking_Management_System.git
+cd Smart_Vehicle_Parking_Management_System
+```
 
-**Technologies Used**
+### 3. Install Dependencies
+```bash
+pip install flask mysql-connector-python
+```
 
-Frontend: HTML, CSS
+### 4. Database Setup
+1. Create a MySQL database named `smart_parking`.
+2. Configure your database credentials in `db.py` or `.env`:
+```python
+DB_CONFIG = {
+    'host': 'localhost',
+    'user': 'root',
+    'password': 'your_password',
+    'database': 'smart_parking'
+}
+```
 
-Backend: Python Flask
+### 5. Launch the Application
+```bash
+python app.py
+```
+Open your browser and navigate to `http://localhost:5000`.
 
-Database: MySQL
+---
 
-Logic: Flask routing, SQL queries, timestamp-based billing
+## 🔒 License
 
-**Database Tables**
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
-places – list of parking locations and capacity
+---
 
-parking_slots – individual slots mapped to places
-
-vehicle_entry – stores entry records, timestamps, and tokens
-
-vehicle_exit – stores exit timestamps and billing details
-
-**How It Works**
-
-User fills entry form → system assigns slot → token issued
-
-Vehicle exits → token entered → bill calculated
-
-Slot freed → system updates all stats automatically
-
-Dashboard displays real-time data for admins
-
-**Purpose**
-
-The system reduces manual workload, eliminates errors, improves accuracy, and provides a much faster and smarter parking experience.
+<div align="center">
+  <sub>Developed with precision by <strong>Pranav Bade</strong></sub>
+</div>
